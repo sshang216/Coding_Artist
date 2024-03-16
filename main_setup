@@ -15,8 +15,8 @@ void setup(){
   rect(0, 0, x * 2, y);
   
   //쿠션 변수 설정 및 쿠션 채색
-  int x1 = 260; int x2 = 420; int x3 = 300; int x4 = 140;
-  int y1 = 240; int y2 = 330; int y3 = 400; int y4 = 325;
+  int x1 = x + d; int x2 = x + d * 17; int x3 = x + d * 5; int x4 = x - d * 11;
+  int y1 = y - d * 6; int y2 = y + d * 3; int y3 = y + d * d; float y4 = y + d * 2.5;
   
   stroke(254, 167, 156);
   fill(254, 167, 156);
@@ -83,7 +83,7 @@ void setup(){
   beginShape();                  //오른쪽 귓속 그리기
   vertex(x + d * 9, y - d * 19);
   bezierVertex(x + d * 9, y - d * 19, x + d * 10.5, y - d * 20, x + d * 11, y - d * 17);
-  bezierVertex(x + d * d, y - d * 19 * 1.5, x + d * 9, y - d * 19, x + d * 9, y - d * 14);
+  bezierVertex(x + d * d, y - d * 18.5, x + d * 9, y - d * 19, x + d * 9, y - d * 19);
   endShape();
   
   //말풍선
@@ -93,9 +93,9 @@ void setup(){
   ellipse(x - d * 15, y - d * 20, d * 13, d * 9);
   
   beginShape();
-  vertex(x - d * 9.5, y - d * 19);
-  bezierVertex(x - d * 9.5, y - d * l6, x - d * 10, y - d * 15, x - d * 17, y - d * 14);
-  bezierVertex(x - d * 9.5, y - d * 16, x - d * 11.5, y - d * 17, x - d * 18, y - d *⁴⁴);
+  vertex(x - d * 17, y - d * 19);
+  bezierVertex(x - d * 17, y - d * 16, x - d * 10, y - d * 15, x - d * 8.5, y - d * 14);
+  bezierVertex(x - d * 9.5, y - d * 15.5, x - d * 14.5, y - d * 17, x - d * 17, y - d * 19);
   endShape();
 
   stroke(255, 255, 255);
@@ -104,5 +104,5 @@ void setup(){
   
   fill(0, 0, 0);
   textSize(d * 2);
-  text("Hello CoA!", x - d * 24.3, y - d * 19.5);  
+  text("Hello CoA!", x - d * 19.3, y - d * 19.5);  
 }
