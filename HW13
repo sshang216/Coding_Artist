@@ -1,0 +1,68 @@
+int sides = 40;  // 원통의 면 수
+float radius = 50;  // 원통의 반지름
+float height = 100;  // 원통의 높이
+float angle = 0;  // 회전 각도
+
+void setup() {
+  size(400, 400, P3D);
+  noStroke();
+}
+
+void draw() {
+  background(200);
+  lights();
+  translate(width / 2, height / 2 + 100);  // y축을 따라 아래로 이동
+  rotateX(PI / 6);
+  rotateY(angle);  // Y축을 기준으로 회전
+  drawCylinder(radius, height, sides);
+  angle += 0.01;  // 회전 속도
+}
+
+void drawCylinder(float r, float h, int sides) {
+  float angleStep = TWO_PI / sides;
+  boolean toggle = false;
+
+  // 아래 원
+  beginShape(TRIANGLE_FAN);
+  vertex(0, -h/2, 0);
+  for (int i = 0; i <= sides; i++) {
+    float angle = i * angleStep;
+    float x = cos(angle) * r;
+    float y = sin(angle) * r;
+    if (toggle) fill(244, 153, 122);  // 색1
+    else fill(102, 133, 151);  // 색2
+    vertex(x, -h/2, y);
+    toggle = !toggle;
+  }
+  endShape();
+
+  // 윗 원
+  toggle = false;
+  beginShape(TRIANGLE_FAN);
+  vertex(0, h/2, 0);
+  for (int i = 0; i <= sides; i++) {
+    float angle = i * angleStep;
+    float x = cos(angle) * r;
+    float y = sin(angle) * r;
+    if (toggle) fill(244, 153, 122);  // 색1
+    else fill(102, 133, 151);  // 색2
+    vertex(x, h/2, y);
+    toggle = !toggle;
+  }
+  endShape();
+
+  // 측면
+  toggle = false;
+  beginShape(QUAD_STRIP);
+  for (int i = 0; i <= sides; i++) {
+    float angle = i * angleStep;
+    float x = cos(angle) * r;
+    float y = sin(angle) * r;
+    if (toggle) fill(244, 153, 122);  // 색1
+    else fill(102, 133, 151);  // 색2
+    vertex(x, -h/2, y);
+    vertex(x, h/2, y);
+    toggle = !toggle;
+  }
+  endShape();
+}
